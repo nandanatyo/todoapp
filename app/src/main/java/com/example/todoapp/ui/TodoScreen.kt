@@ -43,6 +43,9 @@ fun TodoScreen(vm: TodoViewModel = viewModel()) {
 
     val filteredTodos = visibleTodos.filter { it.title.contains(query, ignoreCase = true) }
 
+    val activeCount = todos.count { !it.isDone }
+    val doneCount = todos.count { it.isDone }
+
     Column(Modifier.padding(16.dp)) {
 
         OutlinedTextField(
@@ -84,6 +87,11 @@ fun TodoScreen(vm: TodoViewModel = viewModel()) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp)
+        )
+
+        Text(
+            text = "Tugas aktif: $activeCount | Tugas selesai: $doneCount",
+            modifier = Modifier.padding(vertical = 8.dp)
         )
 
         Divider(Modifier.padding(vertical = 8.dp))
